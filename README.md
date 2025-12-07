@@ -178,113 +178,6 @@ pip install -r requirements.txt
 pip install pennylane-lightning[gpu]
 ```
 
-## Usage
-
-### Data Preprocessing
-
-```bash
-# Run complete preprocessing pipeline
-python preprocess_data.py --flame1_path /path/to/flame1 \
-                          --flame2_path /path/to/flame2 \
-                          --output_path /path/to/output
-```
-
-### Training Classical Models
-
-```bash
-# Train all four classical architectures
-python train_classical.py --data_path /path/to/processed/data \
-                          --models alexnet,vgg19,resnet50,googlenet \
-                          --epochs 20 \
-                          --batch_size 32
-```
-
-### Training Quantum Approach 1 (Hard-Mining VQC)
-
-```bash
-# Phase 1: Train classical backbone
-python train_quantum_approach1.py --phase 1 \
-                                   --data_path /path/to/processed/data \
-                                   --epochs 30
-
-# Phase 2: Mine hard examples
-python train_quantum_approach1.py --phase 2 \
-                                   --checkpoint /path/to/phase1/best.pth \
-                                   --hard_k 20000
-
-# Phase 3: Train quantum specialist
-python train_quantum_approach1.py --phase 3 \
-                                   --checkpoint /path/to/phase1/best.pth \
-                                   --hard_indices /path/to/hard_indices.json \
-                                   --epochs 20
-```
-
-### Training Quantum Approach 2 (QuFeX Network)
-
-```bash
-# Phase 0: Pre-compute attention maps
-python train_quantum_approach2.py --phase 0 \
-                                   --data_path /path/to/processed/data
-
-# Train with warm-start strategy
-python train_quantum_approach2.py --phase AB \
-                                   --data_path /path/to/processed/data \
-                                   --indices_path /path/to/attention/indices \
-                                   --hard_indices /path/to/hard_indices.json \
-                                   --epochs 10
-```
-
-### Evaluation
-
-```bash
-# Evaluate any trained model on test set
-python evaluate.py --model_path /path/to/checkpoint.pth \
-                   --data_path /path/to/processed/data \
-                   --model_type classical|quantum1|quantum2
-```
-
-## Project Structure
-
-```
-wildfire-quantum-detection/
-├── data/
-│   ├── preprocessing.py          # Data augmentation and splitting
-│   ├── dataset.py                # PyTorch Dataset classes
-│   └── utils.py                  # Helper functions
-├── models/
-│   ├── classical/
-│   │   ├── alexnet.py
-│   │   ├── vgg19.py
-│   │   ├── resnet50.py
-│   │   └── googlenet.py
-│   ├── quantum/
-│   │   ├── approach1.py          # Hard-Mining Hybrid VQC
-│   │   ├── approach2.py          # QuFeX Network
-│   │   └── quantum_layers.py    # Quantum circuit definitions
-│   └── base.py                   # Base model class
-├── training/
-│   ├── train_classical.py
-│   ├── train_quantum_approach1.py
-│   ├── train_quantum_approach2.py
-│   ├── trainer.py                # Generic trainer class
-│   └── checkpoint_manager.py     # Checkpoint handling
-├── evaluation/
-│   ├── evaluate.py
-│   ├── metrics.py                # Evaluation metrics
-│   └── visualize.py              # Result visualization
-├── notebooks/
-│   ├── exploratory_analysis.ipynb
-│   ├── results_visualization.ipynb
-│   └── ablation_studies.ipynb
-├── configs/
-│   ├── classical_config.yaml
-│   ├── quantum1_config.yaml
-│   └── quantum2_config.yaml
-├── requirements.txt
-├── README.md
-└── LICENSE
-```
-
 ## Key Insights
 
 1. **Classical models remain superior for overall accuracy**: ResNet50 achieves 95.87% test accuracy, outperforming quantum approaches by 1.19-1.64 percentage points.
@@ -316,19 +209,6 @@ wildfire-quantum-detection/
 4. **Application Extensions**: Extend to multi-class classification, incorporate temporal information for video-based tracking
 5. **Theoretical Analysis**: Formal analysis of when quantum approaches provide advantages for specific decision boundary geometries
 
-## Citation
-
-If you use this code or findings in your research, please cite:
-
-```bibtex
-@article{raza2025wildfire,
-  title={Comparative Analysis of Classical and Quantum Deep Learning Approaches for Wildfire Detection: A Hybrid Architecture Investigation},
-  author={Raza, Muhammad Furqan and Sara, Tamkeen},
-  journal={IEEE Conference Proceedings},
-  year={2025}
-}
-```
-
 ## Acknowledgments
 
 - Dr. Muhammad Daud Abdullah Asif for project guidance and supervision
@@ -345,8 +225,8 @@ This project is licensed under the MIT License. See LICENSE file for details.
 
 For questions, issues, or collaboration opportunities:
 
-- Muhammad Furqan Raza: furqan.raza@university.edu
-- Tamkeen Sara: tamkeen.sara@university.edu
+- Muhammad Furqan Raza: mfraza.bsds23seecs@seecs.edu.pk
+- Tamkeen Sara: tsara.bsds23seecs@seecs.edu.pk
 
 ## References
 
