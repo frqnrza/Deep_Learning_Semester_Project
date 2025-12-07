@@ -192,6 +192,10 @@ pip install pennylane-lightning[gpu]
 
 6. **Warm-start training is critical**: Phase A stabilization with frozen quantum enables successful Phase B quantum fine-tuning, preventing optimization instability.
 
+## Complete Project Details
+For complete dataset, model, and project details, please refer to the following drive link.
+[Project Details](https://drive.google.com/drive/folders/1gL8ENQaaRdRFDmGVGKCUupFlrVmDDcVR?usp=sharing)
+
 ## Limitations and Future Work
 
 ### Current Limitations
